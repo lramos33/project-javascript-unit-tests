@@ -48,8 +48,6 @@ const createMenu = require('../src/restaurant');
 
 describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
   it('Verifica se a função `createMenu` tem o comportamento esperado', () => {
-    const assert = require('assert');
-    const createMenu = require('../src/restaurant');
     // --------------------------------------------------------------------------------------
     // Valores para os testes 5, 6, 7 e 8
     const objetoRetornado = createMenu({ food: {'coxinha': 4, 'sopa': 10, 'sashimi': 22,}, drink: {'agua': 4, 'cerveja': 7} });
