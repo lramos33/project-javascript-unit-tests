@@ -79,6 +79,43 @@
 // soma o preço de todos checando-os no menu e retorna o valor somado acrescido de 10%. DICA: para isso, 
 // você precisará varrer tanto o objeto da chave `food` quanto o objeto da chave `drink`.
 
-const createMenu = () => {};
+const createMenu = (object) => {
+  const returnedObject = {
+    fetchMenu: () => object,
+    consumption: [],
+    order: (string) => returnedObject.consumption.push(string),
+    pay: () => {
+      let totalBill = 0;
+      let consumptionList = returnedObject.consumption;
+      let originalMenu = returnedObject.fetchMenu();
+
+      for (let index in consumptionList) {
+        if (Object.keys(originalMenu.food).includes(consumptionList[index])) {
+          // -----------------
+          // originalMenu.food ------------------------------- // Aqui retorna o objeto Food (objeto filho do parâmetro de entrada), com seus itens e valores.
+          // originalMenu.drink ----------------------------- // Aqui retorna o objeto Drink (objeto filho do parâmetro de entrada), com seus itens e valores.
+          // consumptionList[index] ------------------------ // Aqui retorna o item do pedido na posição index, uma string.
+          // originalMenu.food[consumptionList[index]] ---- // Aqui retorna o valor do item pedido na posição index, um número.
+          // -----------------
+          totalBill += originalMenu.food[consumptionList[index]];
+        } else {
+          totalBill += originalMenu.drink[consumptionList[index]];
+        }
+      }
+      return totalBill
+    },
+  }
+  return returnedObject
+};
+
+const testMenu = createMenu({ food: {'coxinha': 4, 'sopa': 10}, drink: {'agua': 4, 'cerveja': 7} })
+testMenu.order('coxinha')
+testMenu.order('sopa')
+testMenu.order('cerveja')
+
+console.log(testMenu.pay())
+// console.log(testMenu.fetchMenu().food.coxinha)
+// console.log(testMenu.fetchMenu().food.sopa)
+// console.log(testMenu.consumption)
 
 module.exports = createMenu;
