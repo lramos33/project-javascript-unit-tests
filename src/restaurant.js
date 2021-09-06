@@ -103,8 +103,8 @@ const createMenu = (object) => {
       }
       return totalBill * 1.1;
     },
-  }
-  return returnedObject
+  };
+  return returnedObject;
 };
 
 module.exports = createMenu;
