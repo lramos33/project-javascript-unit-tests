@@ -87,35 +87,24 @@ const createMenu = (object) => {
     pay: () => {
       let totalBill = 0;
       let consumptionList = returnedObject.consumption;
-      let originalMenu = returnedObject.fetchMenu();
 
       for (let index in consumptionList) {
-        if (Object.keys(originalMenu.food).includes(consumptionList[index])) {
+        if (Object.keys(object.food).includes(consumptionList[index])) {
           // -----------------
-          // originalMenu.food ------------------------------- // Aqui retorna o objeto Food (objeto filho do parâmetro de entrada), com seus itens e valores.
-          // originalMenu.drink ----------------------------- // Aqui retorna o objeto Drink (objeto filho do parâmetro de entrada), com seus itens e valores.
-          // consumptionList[index] ------------------------ // Aqui retorna o item do pedido na posição index, uma string.
-          // originalMenu.food[consumptionList[index]] ---- // Aqui retorna o valor do item pedido na posição index, um número.
+          // object.food ------------------------------- // Aqui retorna o objeto Food (objeto filho do parâmetro de entrada), com seus itens e valores.
+          // object.drink ----------------------------- // Aqui retorna o objeto Drink (objeto filho do parâmetro de entrada), com seus itens e valores.
+          // consumptionList[index] ------------------ // Aqui retorna o item do pedido na posição index, uma string.
+          // object.food[consumptionList[index]] ---- // Aqui retorna o valor do item pedido na posição index, um número.
           // -----------------
-          totalBill += originalMenu.food[consumptionList[index]];
+          totalBill += object.food[consumptionList[index]];
         } else {
-          totalBill += originalMenu.drink[consumptionList[index]];
+          totalBill += object.drink[consumptionList[index]];
         }
       }
-      return totalBill
+      return totalBill * 1.1;
     },
   }
   return returnedObject
 };
-
-const testMenu = createMenu({ food: {'coxinha': 4, 'sopa': 10}, drink: {'agua': 4, 'cerveja': 7} })
-testMenu.order('coxinha')
-testMenu.order('sopa')
-testMenu.order('cerveja')
-
-console.log(testMenu.pay())
-// console.log(testMenu.fetchMenu().food.coxinha)
-// console.log(testMenu.fetchMenu().food.sopa)
-// console.log(testMenu.consumption)
 
 module.exports = createMenu;
